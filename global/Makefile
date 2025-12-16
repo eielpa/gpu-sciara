@@ -62,3 +62,13 @@ clean:
 	
 wipe:
 	rm -f *.o *output*
+
+############
+#  PROFILE #
+############
+
+# Compila il micro-benchmark e lancia lo script
+profile:
+	nvcc -arch=sm_52 -O3 gpumembench.cu -o gpumembench
+	chmod +x run_profiling.sh
+	./run_profiling.sh
