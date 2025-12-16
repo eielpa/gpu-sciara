@@ -30,16 +30,16 @@ Step: 2000 | Lava: 10655.62 | Time: 240000.00 s
 Step: 3000 | Lava: 17511.63 | Time: 360000.00 s
 Step: 4000 | Lava: 25893.18 | Time: 480000.00 s
 Step: 5000 | Lava: 35768.62 | Time: 600000.00 s
-Step: 6000 | Lava: 42653.74 | Time: 720000.00 s
-Step: 7000 | Lava: 44472.00 | Time: 840000.00 s
-Step: 8000 | Lava: 43156.97 | Time: 960000.00 s
-Step: 9000 | Lava: 40037.65 | Time: 1080000.00 s
-Step: 10000 | Lava: 35746.50 | Time: 1200000.00 s
-Step: 11000 | Lava: 30955.08 | Time: 1320000.00 s
-Step: 12000 | Lava: 24165.97 | Time: 1440000.00 s
-Step: 13000 | Lava: 12928.93 | Time: 1560000.00 s
-Step: 14000 | Lava: 6451.44 | Time: 1680000.00 s
-Step: 15000 | Lava: 893.81 | Time: 1800000.00 s
+Step: 6000 | Lava: 42649.10 | Time: 720000.00 s
+Step: 7000 | Lava: 44484.45 | Time: 840000.00 s
+Step: 8000 | Lava: 43049.68 | Time: 960000.00 s
+Step: 9000 | Lava: 40031.64 | Time: 1080000.00 s
+Step: 10000 | Lava: 35829.29 | Time: 1200000.00 s
+Step: 11000 | Lava: 31170.85 | Time: 1320000.00 s
+Step: 12000 | Lava: 24485.47 | Time: 1440000.00 s
+Step: 13000 | Lava: 13114.63 | Time: 1560000.00 s
+Step: 14000 | Lava: 6379.26 | Time: 1680000.00 s
+Step: 15000 | Lava: 875.49 | Time: 1800000.00 s
 Step: 16000 | Lava: 0.00 | Time: 1920000.00 s
-Final Step 16000. Total Time: 15.924000 s
+Final Step 16000. Total Time: 14.224000 s
 Saving output to ./data/2006/output_2006...
