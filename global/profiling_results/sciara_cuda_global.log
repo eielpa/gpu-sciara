@@ -1,0 +1,47 @@
+DEBUG: [MAIN] Start. Selecting GPU 0...
+DEBUG: Using Device: NVIDIA GeForce GTX 980 (Compute Capability 5.2)
+DEBUG: [init] Start.
+DEBUG: [init] Done.
+DEBUG: [loadConfiguration] Start.
+DEBUG: [loadParameters] Loading ./data/2006/2006_000000000000.cfg
+DEBUG: [loadMorphology] Reading ./data/2006/2006_000000000000_Morphology.asc
+DEBUG: [loadMorphology] Allocating GPU memory...
+DEBUG: [allocateSubstates] Allocating on GPU...
+DEBUG: [allocateSubstates] Done.
+DEBUG: [loadMorphology] Reading matrix to Host buffer...
+DEBUG: [loadMorphology] Copying to GPU...
+DEBUG: [loadMorphology] Done.
+DEBUG: [loadVents] Reading ./data/2006/2006_000000000000_Vents.asc
+DEBUG: [loadVents] Done.
+DEBUG: [loadEmissionRate] Reading ./data/2006/2006_000000000000_EmissionRate.txt
+DEBUG: [loadEmissionRate] Done.
+DEBUG: [loadMap] Reading ./data/2006/2006_000000000000_Thickness.asc
+WARNING: File not found (skipping): ./data/2006/2006_000000000000_Thickness.asc
+DEBUG: [loadMap] Reading ./data/2006/2006_000000000000_Temperature.asc
+WARNING: File not found (skipping): ./data/2006/2006_000000000000_Temperature.asc
+DEBUG: [loadMap] Reading ./data/2006/2006_000000000000_SolidifiedLavaThickness.asc
+WARNING: File not found (skipping): ./data/2006/2006_000000000000_SolidifiedLavaThickness.asc
+DEBUG: [loadConfiguration] Done.
+DEBUG: [simulationInitialize] Start.
+DEBUG: [simulationInitialize] Launching makeBorder_kernel...
+DEBUG: [simulationInitialize] Preparing Vents GPU...
+DEBUG: [simulationInitialize] Done.
+Simulation started. Max Steps: 16000
+Step: 1000 | Lava: 4248.48 | Time: 120000.00 s
+Step: 2000 | Lava: 10655.62 | Time: 240000.00 s
+Step: 3000 | Lava: 17511.63 | Time: 360000.00 s
+Step: 4000 | Lava: 25893.18 | Time: 480000.00 s
+Step: 5000 | Lava: 35769.06 | Time: 600000.00 s
+Step: 6000 | Lava: 42653.25 | Time: 720000.00 s
+Step: 7000 | Lava: 44439.66 | Time: 840000.00 s
+Step: 8000 | Lava: 43152.36 | Time: 960000.00 s
+Step: 9000 | Lava: 40119.39 | Time: 1080000.00 s
+Step: 10000 | Lava: 35806.17 | Time: 1200000.00 s
+Step: 11000 | Lava: 30885.44 | Time: 1320000.00 s
+Step: 12000 | Lava: 24060.72 | Time: 1440000.00 s
+Step: 13000 | Lava: 12767.92 | Time: 1560000.00 s
+Step: 14000 | Lava: 6499.27 | Time: 1680000.00 s
+Step: 15000 | Lava: 805.73 | Time: 1800000.00 s
+Step: 16000 | Lava: 0.00 | Time: 1920000.00 s
+Final Step 16000. Total Time: 7.753000 s
+Saving output to ./data/2006/output_2006...

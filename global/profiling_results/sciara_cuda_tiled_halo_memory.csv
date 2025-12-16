@@ -1,0 +1,83 @@
+==163962== NVPROF is profiling process 163962, command: ./sciara_cuda_tiled_halo ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 10 10 1.0
+==163962== Some kernel(s) will be replayed on device 0 in order to collect all events/metrics.
+==163962== Profiling application: ./sciara_cuda_tiled_halo ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 10 10 1.0
+==163962== Profiling result:
+==163962== Metric result:
+"Device","Kernel","Invocations","Metric Name","Metric Description","Min","Max","Avg"
+"NVIDIA GeForce GTX 980 (0)","boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)",10,"gld_transactions","Global Load Transactions",415990,415990,415990
+"NVIDIA GeForce GTX 980 (0)","boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)",10,"gst_transactions","Global Store Transactions",117520,117520,117520
+"NVIDIA GeForce GTX 980 (0)","boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)",10,"atomic_transactions","Atomic Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)",10,"local_load_transactions","Local Load Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)",10,"local_store_transactions","Local Store Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)",10,"shared_load_transactions","Shared Load Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)",10,"shared_store_transactions","Shared Store Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)",10,"l2_read_transactions","L2 Read Transactions",133689,133821,133702
+"NVIDIA GeForce GTX 980 (0)","boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)",10,"l2_write_transactions","L2 Write Transactions",117526,117526,117526
+"NVIDIA GeForce GTX 980 (0)","boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)",10,"dram_read_transactions","Device Memory Read Transactions",102361,103315,103215
+"NVIDIA GeForce GTX 980 (0)","boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)",10,"dram_write_transactions","Device Memory Write Transactions",98793,100617,100172
+"NVIDIA GeForce GTX 980 (0)","makeBorder_kernel(int, int, double*, bool*, int*, int*)",1,"gld_transactions","Global Load Transactions",3330914,3330914,3330914
+"NVIDIA GeForce GTX 980 (0)","makeBorder_kernel(int, int, double*, bool*, int*, int*)",1,"gst_transactions","Global Store Transactions",20892,20892,20892
+"NVIDIA GeForce GTX 980 (0)","makeBorder_kernel(int, int, double*, bool*, int*, int*)",1,"atomic_transactions","Atomic Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","makeBorder_kernel(int, int, double*, bool*, int*, int*)",1,"local_load_transactions","Local Load Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","makeBorder_kernel(int, int, double*, bool*, int*, int*)",1,"local_store_transactions","Local Store Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","makeBorder_kernel(int, int, double*, bool*, int*, int*)",1,"shared_load_transactions","Shared Load Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","makeBorder_kernel(int, int, double*, bool*, int*, int*)",1,"shared_store_transactions","Shared Store Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","makeBorder_kernel(int, int, double*, bool*, int*, int*)",1,"l2_read_transactions","L2 Read Transactions",620675,620675,620675
+"NVIDIA GeForce GTX 980 (0)","makeBorder_kernel(int, int, double*, bool*, int*, int*)",1,"l2_write_transactions","L2 Write Transactions",20898,20898,20898
+"NVIDIA GeForce GTX 980 (0)","makeBorder_kernel(int, int, double*, bool*, int*, int*)",1,"dram_read_transactions","Device Memory Read Transactions",22912,22912,22912
+"NVIDIA GeForce GTX 980 (0)","makeBorder_kernel(int, int, double*, bool*, int*, int*)",1,"dram_write_transactions","Device Memory Write Transactions",12703,12703,12703
+"NVIDIA GeForce GTX 980 (0)","globalReduction_kernel(int, int, double*, double*)",1,"gld_transactions","Global Load Transactions",205922,205922,205922
+"NVIDIA GeForce GTX 980 (0)","globalReduction_kernel(int, int, double*, double*)",1,"gst_transactions","Global Store Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","globalReduction_kernel(int, int, double*, double*)",1,"atomic_transactions","Atomic Transactions",839,839,839
+"NVIDIA GeForce GTX 980 (0)","globalReduction_kernel(int, int, double*, double*)",1,"local_load_transactions","Local Load Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","globalReduction_kernel(int, int, double*, double*)",1,"local_store_transactions","Local Store Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","globalReduction_kernel(int, int, double*, double*)",1,"shared_load_transactions","Shared Load Transactions",889,889,889
+"NVIDIA GeForce GTX 980 (0)","globalReduction_kernel(int, int, double*, double*)",1,"shared_store_transactions","Shared Store Transactions",1675,1675,1675
+"NVIDIA GeForce GTX 980 (0)","globalReduction_kernel(int, int, double*, double*)",1,"l2_read_transactions","L2 Read Transactions",59896,59896,59896
+"NVIDIA GeForce GTX 980 (0)","globalReduction_kernel(int, int, double*, double*)",1,"l2_write_transactions","L2 Write Transactions",846,846,846
+"NVIDIA GeForce GTX 980 (0)","globalReduction_kernel(int, int, double*, double*)",1,"dram_read_transactions","Device Memory Read Transactions",24441,24441,24441
+"NVIDIA GeForce GTX 980 (0)","globalReduction_kernel(int, int, double*, double*)",1,"dram_write_transactions","Device Memory Write Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","massBalance_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double*)",10,"gld_transactions","Global Load Transactions",5811442,5811442,5811442
+"NVIDIA GeForce GTX 980 (0)","massBalance_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double*)",10,"gst_transactions","Global Store Transactions",116400,116416,116408
+"NVIDIA GeForce GTX 980 (0)","massBalance_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double*)",10,"atomic_transactions","Atomic Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","massBalance_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double*)",10,"local_load_transactions","Local Load Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","massBalance_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double*)",10,"local_store_transactions","Local Store Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","massBalance_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double*)",10,"shared_load_transactions","Shared Load Transactions",124740,124740,124740
+"NVIDIA GeForce GTX 980 (0)","massBalance_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double*)",10,"shared_store_transactions","Shared Store Transactions",24948,24948,24948
+"NVIDIA GeForce GTX 980 (0)","massBalance_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double*)",10,"l2_read_transactions","L2 Read Transactions",1237440,1237504,1237447
+"NVIDIA GeForce GTX 980 (0)","massBalance_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double*)",10,"l2_write_transactions","L2 Write Transactions",116406,116422,116414
+"NVIDIA GeForce GTX 980 (0)","massBalance_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double*)",10,"dram_read_transactions","Device Memory Read Transactions",495030,496271,495672
+"NVIDIA GeForce GTX 980 (0)","massBalance_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double*)",10,"dram_write_transactions","Device Memory Write Transactions",113026,114289,113642
+"NVIDIA GeForce GTX 980 (0)","computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)",10,"gld_transactions","Global Load Transactions",623710,623766,623731
+"NVIDIA GeForce GTX 980 (0)","computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)",10,"gst_transactions","Global Store Transactions",174596,174637,174614
+"NVIDIA GeForce GTX 980 (0)","computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)",10,"atomic_transactions","Atomic Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)",10,"local_load_transactions","Local Load Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)",10,"local_store_transactions","Local Store Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)",10,"shared_load_transactions","Shared Load Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)",10,"shared_store_transactions","Shared Store Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)",10,"l2_read_transactions","L2 Read Transactions",192846,192985,192870
+"NVIDIA GeForce GTX 980 (0)","computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)",10,"l2_write_transactions","L2 Write Transactions",174602,174643,174620
+"NVIDIA GeForce GTX 980 (0)","computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)",10,"dram_read_transactions","Device Memory Read Transactions",152134,152770,152659
+"NVIDIA GeForce GTX 980 (0)","computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)",10,"dram_write_transactions","Device Memory Write Transactions",146918,149280,148510
+"NVIDIA GeForce GTX 980 (0)","computeOutflows_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double, double, double, double, double)",10,"gld_transactions","Global Load Transactions",598922,600746,600071
+"NVIDIA GeForce GTX 980 (0)","computeOutflows_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double, double, double, double, double)",10,"gst_transactions","Global Store Transactions",16,84,61
+"NVIDIA GeForce GTX 980 (0)","computeOutflows_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double, double, double, double, double)",10,"atomic_transactions","Atomic Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","computeOutflows_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double, double, double, double, double)",10,"local_load_transactions","Local Load Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","computeOutflows_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double, double, double, double, double)",10,"local_store_transactions","Local Store Transactions",3,23,14
+"NVIDIA GeForce GTX 980 (0)","computeOutflows_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double, double, double, double, double)",10,"shared_load_transactions","Shared Load Transactions",12494,12568,12537
+"NVIDIA GeForce GTX 980 (0)","computeOutflows_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double, double, double, double, double)",10,"shared_store_transactions","Shared Store Transactions",37998,37998,37998
+"NVIDIA GeForce GTX 980 (0)","computeOutflows_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double, double, double, double, double)",10,"l2_read_transactions","L2 Read Transactions",174703,176087,174969
+"NVIDIA GeForce GTX 980 (0)","computeOutflows_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double, double, double, double, double)",10,"l2_write_transactions","L2 Write Transactions",25,113,81
+"NVIDIA GeForce GTX 980 (0)","computeOutflows_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double, double, double, double, double)",10,"dram_read_transactions","Device Memory Read Transactions",146616,146962,146808
+"NVIDIA GeForce GTX 980 (0)","computeOutflows_tiled_kernel(int, int, int*, int*, double*, double*, double*, double*, double, double, double, double, double)",10,"dram_write_transactions","Device Memory Write Transactions",30394,32098,31649
+"NVIDIA GeForce GTX 980 (0)","emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)",10,"gld_transactions","Global Load Transactions",200170,200170,200170
+"NVIDIA GeForce GTX 980 (0)","emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)",10,"gst_transactions","Global Store Transactions",4,4,4
+"NVIDIA GeForce GTX 980 (0)","emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)",10,"atomic_transactions","Atomic Transactions",2,2,2
+"NVIDIA GeForce GTX 980 (0)","emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)",10,"local_load_transactions","Local Load Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)",10,"local_store_transactions","Local Store Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)",10,"shared_load_transactions","Shared Load Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)",10,"shared_store_transactions","Shared Store Transactions",0,0,0
+"NVIDIA GeForce GTX 980 (0)","emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)",10,"l2_read_transactions","L2 Read Transactions",12621,12897,12677
+"NVIDIA GeForce GTX 980 (0)","emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)",10,"l2_write_transactions","L2 Write Transactions",12,12,12
+"NVIDIA GeForce GTX 980 (0)","emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)",10,"dram_read_transactions","Device Memory Read Transactions",4,52,21
+"NVIDIA GeForce GTX 980 (0)","emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)",10,"dram_write_transactions","Device Memory Write Transactions",40,72,55

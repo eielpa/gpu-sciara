@@ -1,0 +1,21 @@
+==163631== NVPROF is profiling process 163631, command: ./sciara_cuda_cfamo ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 16000 1000 1.0
+==163631== Profiling application: ./sciara_cuda_cfamo ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 16000 1000 1.0
+==163631== Profiling result:
+"Type","Time(%)","Time","Calls","Avg","Min","Max","Name"
+,%,s,,us,us,us,
+"GPU activities",45.468435,2.728109,16000,170.506000,85.312000,251.010000,"CfAMo_update_kernel(int, int, int*, int*, double*, double*, double*, double*, double*, double, double, double, double, double)"
+"GPU activities",19.101057,1.146065,16000,71.629000,58.528000,99.072000,"computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)"
+"GPU activities",10.888214,0.653294,16000,40.830000,39.328000,42.881000,"boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)"
+"GPU activities",10.249879,0.614993,16000,38.437000,33.728000,40.192000,"CfAMo_init_kernel(int, int, double*, double*, double*, double*)"
+"GPU activities",7.458996,0.447540,16000,27.971000,27.488000,29.216000,"emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)"
+"GPU activities",6.778452,0.406708,16000,25.419000,23.680000,28.064000,"CfAMo_finalize_kernel(int, int, double*, double*)"
+"GPU activities",0.030478,0.001829,16,114.292000,19.232000,213.537000,"globalReduction_kernel(int, int, double*, double*)"
+"GPU activities",0.019006,0.001140,5,228.078000,1.312000,570.851000,"[CUDA memcpy HtoD]"
+"GPU activities",0.002802,0.000168,24,7.004000,2.336000,72.736000,"[CUDA memset]"
+"GPU activities",0.002241,0.000134,1,134.433000,134.433000,134.433000,"makeBorder_kernel(int, int, double*, bool*, int*, int*)"
+"GPU activities",0.000441,0.000026,16,1.652000,1.600000,1.952000,"[CUDA memcpy DtoH]"
+
+==163631== Unified Memory profiling result:
+"Device","Count","Avg Size","Min Size","Max Size","Total Size","Total Time",""
+"NVIDIA GeForce GTX 980 (0)",32000,32.000000KB,4.000000KB,60.000000KB,0.976562GB,0.000000,"Device To Host"
+Total CPU Page faults: 16000

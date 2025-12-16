@@ -33,7 +33,11 @@ EXEC_SERIAL = sciara_serial
 EXEC_CUDA = sciara_cuda
 
 # Trova tutti i sorgenti .cu e .cpp nella cartella corrente
-SRC = $(wildcard *.cu *.cpp)
+CPPS = $(wildcard *.cpp)
+# Prende tutti i .cu MA esclude gpumembench.cu
+CUS = $(filter-out gpumembench.cu, $(wildcard *.cu))
+# Unisce le due liste
+SRC = $(CPPS) $(CUS)
 
 default: cuda
 

@@ -1,0 +1,39 @@
+DEBUG: [init] Start.
+DEBUG: [init] Done.
+DEBUG: [loadConfiguration] Start.
+DEBUG: [loadParameters] Loading ./data/2006/2006_000000000000.cfg
+DEBUG: [loadMorphology] Reading ./data/2006/2006_000000000000_Morphology.asc
+DEBUG: [loadMorphology] Allocating GPU memory...
+DEBUG: [allocateSubstates] Allocating on GPU...
+DEBUG: [allocateSubstates] Done.
+DEBUG: [loadMorphology] Reading matrix to Host buffer...
+DEBUG: [loadMorphology] Copying to GPU...
+DEBUG: [loadMorphology] Done.
+DEBUG: [loadVents] Reading ./data/2006/2006_000000000000_Vents.asc
+DEBUG: [loadVents] Done.
+DEBUG: [loadEmissionRate] Reading ./data/2006/2006_000000000000_EmissionRate.txt
+DEBUG: [loadEmissionRate] Done.
+DEBUG: [loadMap] Reading ./data/2006/2006_000000000000_Thickness.asc
+WARNING: File not found (skipping): ./data/2006/2006_000000000000_Thickness.asc
+DEBUG: [loadMap] Reading ./data/2006/2006_000000000000_Temperature.asc
+WARNING: File not found (skipping): ./data/2006/2006_000000000000_Temperature.asc
+DEBUG: [loadMap] Reading ./data/2006/2006_000000000000_SolidifiedLavaThickness.asc
+WARNING: File not found (skipping): ./data/2006/2006_000000000000_SolidifiedLavaThickness.asc
+DEBUG: [loadConfiguration] Done.
+DEBUG: [simulationInitialize] Start.
+DEBUG: [simulationInitialize] Launching makeBorder_kernel...
+DEBUG: [simulationInitialize] Preparing Vents GPU...
+DEBUG: [simulationInitialize] Done.
+Simulation started (TILED Version). Max Steps: 16000
+Step: 1000 | Lava: 111.31 | Time: 120000.00 s
+Step: 2000 | Lava: 106.98 | Time: 240000.00 s
+Step: 3000 | Lava: 95.44 | Time: 360000.00 s
+Step: 4000 | Lava: 90.54 | Time: 480000.00 s
+Step: 5000 | Lava: 85.25 | Time: 600000.00 s
+Step: 6000 | Lava: 43.73 | Time: 720000.00 s
+Step: 7000 | Lava: 33.23 | Time: 840000.00 s
+Step: 8000 | Lava: 12.32 | Time: 960000.00 s
+Step: 9000 | Lava: 2.62 | Time: 1080000.00 s
+Step: 10000 | Lava: 0.00 | Time: 1200000.00 s
+Final Step 10801. Total Time: 4.008000 s
+Saving output to ./data/2006/output_2006...
