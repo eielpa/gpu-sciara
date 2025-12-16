@@ -24,16 +24,22 @@ DEBUG: [simulationInitialize] Start.
 DEBUG: [simulationInitialize] Launching makeBorder_kernel...
 DEBUG: [simulationInitialize] Preparing Vents GPU...
 DEBUG: [simulationInitialize] Done.
-Simulation started (TILED Version). Max Steps: 16000
-Step: 1000 | Lava: 111.31 | Time: 120000.00 s
-Step: 2000 | Lava: 106.98 | Time: 240000.00 s
-Step: 3000 | Lava: 95.44 | Time: 360000.00 s
-Step: 4000 | Lava: 90.54 | Time: 480000.00 s
-Step: 5000 | Lava: 85.25 | Time: 600000.00 s
-Step: 6000 | Lava: 43.73 | Time: 720000.00 s
-Step: 7000 | Lava: 33.23 | Time: 840000.00 s
-Step: 8000 | Lava: 12.32 | Time: 960000.00 s
-Step: 9000 | Lava: 2.62 | Time: 1080000.00 s
-Step: 10000 | Lava: 0.00 | Time: 1200000.00 s
-Final Step 10801. Total Time: 4.009000 s
+Simulation started (TILED_wH Version). Max Steps: 16000
+Step: 1000 | Lava: 4248.48 | Time: 120000.00 s
+Step: 2000 | Lava: 10655.62 | Time: 240000.00 s
+Step: 3000 | Lava: 17511.63 | Time: 360000.00 s
+Step: 4000 | Lava: 25893.18 | Time: 480000.00 s
+Step: 5000 | Lava: 35769.06 | Time: 600000.00 s
+Step: 6000 | Lava: 42653.25 | Time: 720000.00 s
+Step: 7000 | Lava: 44439.66 | Time: 840000.00 s
+Step: 8000 | Lava: 43152.36 | Time: 960000.00 s
+Step: 9000 | Lava: 40119.39 | Time: 1080000.00 s
+Step: 10000 | Lava: 35806.17 | Time: 1200000.00 s
+Step: 11000 | Lava: 30885.44 | Time: 1320000.00 s
+Step: 12000 | Lava: 24060.72 | Time: 1440000.00 s
+Step: 13000 | Lava: 12767.92 | Time: 1560000.00 s
+Step: 14000 | Lava: 6499.27 | Time: 1680000.00 s
+Step: 15000 | Lava: 805.73 | Time: 1800000.00 s
+Step: 16000 | Lava: 0.00 | Time: 1920000.00 s
+Final Step 16000. Total Time: 9.626000 s
 Saving output to ./data/2006/output_2006...

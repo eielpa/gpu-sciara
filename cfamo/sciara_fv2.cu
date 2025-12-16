@@ -308,10 +308,9 @@ int main(int argc, char **argv)
 
   printf("Simulation started (CfAMo Atomic Version). Max Steps: %d\n", max_steps);
   
-  // NOTA LE PARENTESI E L'OPERATORE &&
-while ( (max_steps > 0 && sciara->simulation->step < max_steps) && 
-        ((sciara->simulation->elapsed_time <= sciara->simulation->effusion_duration) || 
-         (total_current_lava == -1 || total_current_lava > thickness_threshold)) )
+  while ((max_steps > 0 && sciara->simulation->step < max_steps) || 
+         (sciara->simulation->elapsed_time <= sciara->simulation->effusion_duration) || 
+         (total_current_lava == -1 || total_current_lava > thickness_threshold))
   {
     sciara->simulation->elapsed_time += sciara->parameters->Pclock;
     sciara->simulation->step++;

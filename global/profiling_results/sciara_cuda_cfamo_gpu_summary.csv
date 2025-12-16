@@ -1,21 +1,21 @@
-==164804== NVPROF is profiling process 164804, command: ./sciara_cuda_cfamo ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 16000 1000 1.0
-==164804== Profiling application: ./sciara_cuda_cfamo ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 16000 1000 1.0
-==164804== Profiling result:
+==167553== NVPROF is profiling process 167553, command: ./sciara_cuda_cfamo ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 16000 1000 1.0
+==167553== Profiling application: ./sciara_cuda_cfamo ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 16000 1000 1.0
+==167553== Profiling result:
 "Type","Time(%)","Time","Calls","Avg","Min","Max","Name"
 ,%,s,,us,us,us,
-"GPU activities",45.445833,2.724535,16000,170.283000,85.312000,249.055000,"CfAMo_update_kernel(int, int, int*, int*, double*, double*, double*, double*, double*, double, double, double, double, double)"
-"GPU activities",19.099700,1.145051,16000,71.565000,58.624000,103.008000,"computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)"
-"GPU activities",10.899668,0.653449,16000,40.840000,39.488000,42.847000,"boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)"
-"GPU activities",10.255103,0.614806,16000,38.425000,33.919000,40.512000,"CfAMo_init_kernel(int, int, double*, double*, double*, double*)"
-"GPU activities",7.462757,0.447402,16000,27.962000,27.488000,28.927000,"emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)"
-"GPU activities",6.783077,0.406654,16000,25.415000,23.999000,28.000000,"CfAMo_finalize_kernel(int, int, double*, double*)"
-"GPU activities",0.029314,0.001757,16,109.837000,19.520000,179.776000,"globalReduction_kernel(int, int, double*, double*)"
-"GPU activities",0.019054,0.001142,5,228.460000,1.312000,569.470000,"[CUDA memcpy HtoD]"
-"GPU activities",0.002792,0.000167,24,6.973000,2.336000,73.088000,"[CUDA memset]"
-"GPU activities",0.002257,0.000135,1,135.295000,135.295000,135.295000,"makeBorder_kernel(int, int, double*, bool*, int*, int*)"
-"GPU activities",0.000445,0.000027,16,1.666000,1.600000,1.920000,"[CUDA memcpy DtoH]"
+"GPU activities",45.403655,2.715723,16000,169.732000,85.088000,241.825000,"CfAMo_update_kernel(int, int, int*, int*, double*, double*, double*, double*, double*, double, double, double, double, double)"
+"GPU activities",19.073294,1.140829,16000,71.301000,58.784000,97.632000,"computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)"
+"GPU activities",10.925694,0.653497,16000,40.843000,39.200000,42.656000,"boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)"
+"GPU activities",10.275982,0.614636,16000,38.414000,33.440000,40.480000,"CfAMo_init_kernel(int, int, double*, double*, double*, double*)"
+"GPU activities",7.490364,0.448020,16000,28.001000,27.296000,29.056000,"emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)"
+"GPU activities",6.775640,0.405271,16000,25.329000,23.776000,27.872000,"CfAMo_finalize_kernel(int, int, double*, double*)"
+"GPU activities",0.030809,0.001843,16,115.172000,19.937000,207.937000,"globalReduction_kernel(int, int, double*, double*)"
+"GPU activities",0.019109,0.001143,5,228.589000,1.280000,569.794000,"[CUDA memcpy HtoD]"
+"GPU activities",0.002788,0.000167,24,6.948000,2.304000,73.248000,"[CUDA memset]"
+"GPU activities",0.002225,0.000133,1,133.056000,133.056000,133.056000,"makeBorder_kernel(int, int, double*, bool*, int*, int*)"
+"GPU activities",0.000440,0.000026,16,1.646000,1.600000,1.888000,"[CUDA memcpy DtoH]"
 
-==164804== Unified Memory profiling result:
+==167553== Unified Memory profiling result:
 "Device","Count","Avg Size","Min Size","Max Size","Total Size","Total Time",""
 "NVIDIA GeForce GTX 980 (0)",32000,32.000000KB,4.000000KB,60.000000KB,0.976562GB,0.000000,"Device To Host"
 Total CPU Page faults: 16000
