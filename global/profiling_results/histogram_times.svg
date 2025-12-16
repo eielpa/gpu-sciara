@@ -220,47 +220,47 @@
 	<path stroke='black'  d='M715.48,82.51 L758.04,82.51 L758.04,73.51 L715.48,73.51 L715.48,82.51 Z  '/></g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g stroke='none' shape-rendering='crispEdges'>
-		<polygon fill = 'rgb( 79, 159, 224)' fill-opacity = '0.800000' points = '163.61,564.00 187.59,564.00 187.59,92.21 163.61,92.21 '/>
+		<polygon fill = 'rgb( 79, 159, 224)' fill-opacity = '0.800000' points = '163.61,564.00 187.59,564.00 187.59,91.35 163.61,91.35 '/>
 	</g>
-	<path stroke='black'  d='M163.61,564.00 L163.61,92.22 L187.58,92.22 L187.58,564.00 L163.61,564.00 Z  '/></g>
+	<path stroke='black'  d='M163.61,564.00 L163.61,91.36 L187.58,91.36 L187.58,564.00 L163.61,564.00 Z  '/></g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g stroke='none' shape-rendering='crispEdges'>
-		<polygon fill = 'rgb( 79, 159, 224)' fill-opacity = '0.800000' points = '283.46,564.00 307.43,564.00 307.43,283.49 283.46,283.49 '/>
+		<polygon fill = 'rgb( 79, 159, 224)' fill-opacity = '0.800000' points = '283.46,564.00 307.43,564.00 307.43,283.27 283.46,283.27 '/>
 	</g>
-	<path stroke='black'  d='M283.46,564.00 L283.46,283.50 L307.42,283.50 L307.42,564.00 L283.46,564.00 Z  '/></g>
+	<path stroke='black'  d='M283.46,564.00 L283.46,283.28 L307.42,283.28 L307.42,564.00 L283.46,564.00 Z  '/></g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g stroke='none' shape-rendering='crispEdges'>
-		<polygon fill = 'rgb( 79, 159, 224)' fill-opacity = '0.800000' points = '403.30,564.00 427.28,564.00 427.28,283.82 403.30,283.82 '/>
+		<polygon fill = 'rgb( 79, 159, 224)' fill-opacity = '0.800000' points = '403.30,564.00 427.28,564.00 427.28,283.61 403.30,283.61 '/>
 	</g>
-	<path stroke='black'  d='M403.30,564.00 L403.30,283.83 L427.27,283.83 L427.27,564.00 L403.30,564.00 Z  '/></g>
+	<path stroke='black'  d='M403.30,564.00 L403.30,283.62 L427.27,283.62 L427.27,564.00 L403.30,564.00 Z  '/></g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g stroke='none' shape-rendering='crispEdges'>
-		<polygon fill = 'rgb( 79, 159, 224)' fill-opacity = '0.800000' points = '523.15,564.00 547.12,564.00 547.12,290.19 523.15,290.19 '/>
+		<polygon fill = 'rgb( 79, 159, 224)' fill-opacity = '0.800000' points = '523.15,564.00 547.12,564.00 547.12,290.04 523.15,290.04 '/>
 	</g>
-	<path stroke='black'  d='M523.15,564.00 L523.15,290.20 L547.11,290.20 L547.11,564.00 L523.15,564.00 Z  '/></g>
+	<path stroke='black'  d='M523.15,564.00 L523.15,290.05 L547.11,290.05 L547.11,564.00 L523.15,564.00 Z  '/></g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g stroke='none' shape-rendering='crispEdges'>
-		<polygon fill = 'rgb( 79, 159, 224)' fill-opacity = '0.800000' points = '642.99,564.00 666.97,564.00 666.97,541.30 642.99,541.30 '/>
+		<polygon fill = 'rgb( 79, 159, 224)' fill-opacity = '0.800000' points = '642.99,564.00 666.97,564.00 666.97,541.26 642.99,541.26 '/>
 	</g>
-	<path stroke='black'  d='M642.99,564.00 L642.99,541.31 L666.96,541.31 L666.96,564.00 L642.99,564.00 Z  '/></g>
+	<path stroke='black'  d='M642.99,564.00 L642.99,541.27 L666.96,541.27 L666.96,564.00 L642.99,564.00 Z  '/></g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 	</g>
 	<g id="gnuplot_plot_2" ><title>gnuplot_plot_2</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<g transform="translate(175.60,87.12)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="middle">
-		<text><tspan font-family="Arial" >8.42</tspan></text>
+	<g transform="translate(175.60,86.26)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="middle">
+		<text><tspan font-family="Arial" >8.44</tspan></text>
 	</g>
-	<g transform="translate(295.44,278.40)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="middle">
+	<g transform="translate(295.44,278.18)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="middle">
 		<text><tspan font-family="Arial" >5.01</tspan></text>
 	</g>
-	<g transform="translate(415.29,278.73)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="middle">
-		<text><tspan font-family="Arial" >5.00</tspan></text>
+	<g transform="translate(415.29,278.52)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="middle">
+		<text><tspan font-family="Arial" >5.01</tspan></text>
 	</g>
-	<g transform="translate(535.13,285.10)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="middle">
+	<g transform="translate(535.13,284.95)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="middle">
 		<text><tspan font-family="Arial" >4.89</tspan></text>
 	</g>
-	<g transform="translate(654.98,536.21)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="middle">
+	<g transform="translate(654.98,536.17)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="middle">
 		<text><tspan font-family="Arial" >0.41</tspan></text>
 	</g>
 </g>
