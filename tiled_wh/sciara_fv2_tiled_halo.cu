@@ -6,13 +6,13 @@
 
 // --- CONFIGURAZIONE TILING ---
 #ifndef TILE_W
-#define TILE_W 16
+#define TILE_W 32
 #endif
 #ifndef TILE_H
 #define TILE_H 16
 #endif
 
-// La Shared Memory deve ospitare il Tile + 1 cella di Halo su ogni lato
+// Shared Memory con Halo (Tile + 2 bordi)
 #define SHARED_W (TILE_W + 2)
 #define SHARED_H (TILE_H + 2)
 
@@ -27,6 +27,7 @@
 #define REDUCE_INTERVL_ID      4
 #define THICKNESS_THRESHOLD_ID 5
 
+// Atomic Add Helper
 #if !defined(__CUDA_ARCH__) || __CUDA_ARCH__ >= 600
 #else
 __device__ double atomicAdd(double* address, double val)
@@ -41,88 +42,81 @@ __device__ double atomicAdd(double* address, double val)
 }
 #endif
 
-// Helper device per lettura sicura da Global con controllo bordi
+// Helper per lettura sicura (Halo Global)
 __device__ double get_safe(double *M, int rows, int cols, int r, int c, double fallback) {
     if (r >= 0 && r < rows && c >= 0 && c < cols) return M[r * cols + c];
     return fallback;
 }
 
 // ----------------------------------------------------------------------------
-// KERNEL TILED_wH (With Halo): computeOutflows
+// KERNEL TILED_wH: computeOutflows
 // ----------------------------------------------------------------------------
 __global__ void computeOutflows_tiled_wH_kernel(
     int rows, int cols, int *Xi, int *Xj, double *Sz, double *Sh, double *ST, double *Mf,
     double Pc, double _a, double _b, double _c, double _d)
 {
-    int tx = threadIdx.x;
-    int ty = threadIdx.y;
+    int tx = threadIdx.x; int ty = threadIdx.y;
     int j = blockIdx.x * blockDim.x + tx; 
     int i = blockIdx.y * blockDim.y + ty; 
 
-    // Shared Memory estesa (18x18)
+    // Shared Memory estesa
     __shared__ double s_Sz[SHARED_H][SHARED_W];
     __shared__ double s_Sh[SHARED_H][SHARED_W];
     __shared__ double s_ST[SHARED_H][SHARED_W];
 
-    // Coordinate in Shared (spostate di +1, +1 per lasciare spazio all'halo)
-    int s_c = tx + 1;
-    int s_r = ty + 1;
+    int s_c = tx + 1; int s_r = ty + 1;
 
-    // 1. CARICAMENTO CENTRO
-    // Carico sempre, anche se fuori dai bordi globali (metto 0 o dummy) per evitare if nel calcolo dopo
+    // --- CARICAMENTO HALO ROBUSTO (Stile CfAMo) ---
+    // Centro
     s_Sz[s_r][s_c] = get_safe(Sz, rows, cols, i, j, 0.0);
     s_Sh[s_r][s_c] = get_safe(Sh, rows, cols, i, j, 0.0);
     s_ST[s_r][s_c] = get_safe(ST, rows, cols, i, j, 0.0);
 
-    // 2. CARICAMENTO HALO (Fatto dai thread di bordo)
-    // Halo Superiore
+    // Bordi
     if (ty == 0) {
-        s_Sz[0][s_c] = get_safe(Sz, rows, cols, i - 1, j, 0.0);
-        s_Sh[0][s_c] = get_safe(Sh, rows, cols, i - 1, j, 0.0);
-        // s_ST non serve per i vicini in questo kernel, ma per coerenza potremmo caricarlo
-        // In computeOutflows serve l'altezza (z+h) dei vicini
+        s_Sz[0][s_c] = get_safe(Sz, rows, cols, i-1, j, 0.0);
+        s_Sh[0][s_c] = get_safe(Sh, rows, cols, i-1, j, 0.0);
+        s_ST[0][s_c] = get_safe(ST, rows, cols, i-1, j, 0.0);
     }
-    // Halo Inferiore
-    if (ty == TILE_H - 1) {
-        s_Sz[SHARED_H - 1][s_c] = get_safe(Sz, rows, cols, i + 1, j, 0.0);
-        s_Sh[SHARED_H - 1][s_c] = get_safe(Sh, rows, cols, i + 1, j, 0.0);
+    if (ty == TILE_H-1) {
+        s_Sz[SHARED_H-1][s_c] = get_safe(Sz, rows, cols, i+1, j, 0.0);
+        s_Sh[SHARED_H-1][s_c] = get_safe(Sh, rows, cols, i+1, j, 0.0);
+        s_ST[SHARED_H-1][s_c] = get_safe(ST, rows, cols, i+1, j, 0.0);
     }
-    // Halo Sinistro
     if (tx == 0) {
-        s_Sz[s_r][0] = get_safe(Sz, rows, cols, i, j - 1, 0.0);
-        s_Sh[s_r][0] = get_safe(Sh, rows, cols, i, j - 1, 0.0);
+        s_Sz[s_r][0] = get_safe(Sz, rows, cols, i, j-1, 0.0);
+        s_Sh[s_r][0] = get_safe(Sh, rows, cols, i, j-1, 0.0);
+        s_ST[s_r][0] = get_safe(ST, rows, cols, i, j-1, 0.0);
     }
-    // Halo Destro
-    if (tx == TILE_W - 1) {
-        s_Sz[s_r][SHARED_W - 1] = get_safe(Sz, rows, cols, i, j + 1, 0.0);
-        s_Sh[s_r][SHARED_W - 1] = get_safe(Sh, rows, cols, i, j + 1, 0.0);
+    if (tx == TILE_W-1) {
+        s_Sz[s_r][SHARED_W-1] = get_safe(Sz, rows, cols, i, j+1, 0.0);
+        s_Sh[s_r][SHARED_W-1] = get_safe(Sh, rows, cols, i, j+1, 0.0);
+        s_ST[s_r][SHARED_W-1] = get_safe(ST, rows, cols, i, j+1, 0.0);
+    }
+    // Angoli
+    if (tx==0 && ty==0) { 
+        s_Sz[0][0] = get_safe(Sz, rows, cols, i-1, j-1, 0.0); 
+        s_Sh[0][0] = get_safe(Sh, rows, cols, i-1, j-1, 0.0);
+    }
+    if (tx==TILE_W-1 && ty==0) { 
+        s_Sz[0][SHARED_W-1] = get_safe(Sz, rows, cols, i-1, j+1, 0.0); 
+        s_Sh[0][SHARED_W-1] = get_safe(Sh, rows, cols, i-1, j+1, 0.0);
+    }
+    if (tx==0 && ty==TILE_H-1) { 
+        s_Sz[SHARED_H-1][0] = get_safe(Sz, rows, cols, i+1, j-1, 0.0); 
+        s_Sh[SHARED_H-1][0] = get_safe(Sh, rows, cols, i+1, j-1, 0.0);
+    }
+    if (tx==TILE_W-1 && ty==TILE_H-1) { 
+        s_Sz[SHARED_H-1][SHARED_W-1] = get_safe(Sz, rows, cols, i+1, j+1, 0.0); 
+        s_Sh[SHARED_H-1][SHARED_W-1] = get_safe(Sh, rows, cols, i+1, j+1, 0.0);
     }
 
-    // Halo Angoli (4 thread specifici)
-    if (tx == 0 && ty == 0) { // Top-Left
-        s_Sz[0][0] = get_safe(Sz, rows, cols, i - 1, j - 1, 0.0);
-        s_Sh[0][0] = get_safe(Sh, rows, cols, i - 1, j - 1, 0.0);
-    }
-    if (tx == TILE_W - 1 && ty == 0) { // Top-Right
-        s_Sz[0][SHARED_W - 1] = get_safe(Sz, rows, cols, i - 1, j + 1, 0.0);
-        s_Sh[0][SHARED_W - 1] = get_safe(Sh, rows, cols, i - 1, j + 1, 0.0);
-    }
-    if (tx == 0 && ty == TILE_H - 1) { // Bottom-Left
-        s_Sz[SHARED_H - 1][0] = get_safe(Sz, rows, cols, i + 1, j - 1, 0.0);
-        s_Sh[SHARED_H - 1][0] = get_safe(Sh, rows, cols, i + 1, j - 1, 0.0);
-    }
-    if (tx == TILE_W - 1 && ty == TILE_H - 1) { // Bottom-Right
-        s_Sz[SHARED_H - 1][SHARED_W - 1] = get_safe(Sz, rows, cols, i + 1, j + 1, 0.0);
-        s_Sh[SHARED_H - 1][SHARED_W - 1] = get_safe(Sh, rows, cols, i + 1, j + 1, 0.0);
-    }
+    __syncthreads();
 
-    __syncthreads(); // Barriera fondamentale
-
-    // Check limiti e uscita rapida (leggendo da Shared)
     if (i >= rows || j >= cols) return;
     if (s_Sh[s_r][s_c] <= 0.0) return;
 
-    // 3. CALCOLO (Tutto in Shared Memory)
+    // --- CALCOLO (Tutto in Shared) ---
     bool eliminated[MOORE_NEIGHBORS];
     double z[MOORE_NEIGHBORS], h[MOORE_NEIGHBORS], H[MOORE_NEIGHBORS];
     double theta[MOORE_NEIGHBORS], w[MOORE_NEIGHBORS], Pr[MOORE_NEIGHBORS];
@@ -134,21 +128,10 @@ __global__ void computeOutflows_tiled_wH_kernel(
     sz0 = s_Sz[s_r][s_c];
 
     for (int k = 0; k < MOORE_NEIGHBORS; k++) {
-        // Accesso diretto in Shared usando gli offset Xi, Xj
-        // Non serve nessun controllo di boundary qui, l'halo copre tutto!
-        int n_r = s_r + Xj[k]; // Nota: Xj mappa sulle righe locali (y) o viceversa?
-        int n_c = s_c + Xi[k]; // Xi mappa sulle colonne locali (x)
-        // ATTENZIONE: Nel codice originale Xi è variazione riga o colonna?
-        // Controlliamo: init() usa _Xi={0,-1..} e _Xj={0,0..}. Di solito i è riga, j è colonna.
-        // Nello standard: ni = i + Xi[k]; nj = j + Xj[k];
-        // Quindi Xi è variazione su i (righe), Xj su j (colonne).
-        // Nel kernel: ty è riga, tx è colonna.
-        // Quindi: n_ty = ty + Xi[k]; n_tx = tx + Xj[k];
+        // Accesso diretto alla Shared con offset corretti
+        int n_r = s_r + Xi[k]; 
+        int n_c = s_c + Xj[k];
         
-        // Correggiamo gli indici shared:
-        n_r = s_r + Xi[k]; // variazione riga
-        n_c = s_c + Xj[k]; // variazione colonna
-
         sz = s_Sz[n_r][n_c];
         h[k] = s_Sh[n_r][n_c];
 
@@ -188,31 +171,22 @@ __global__ void massBalance_tiled_wH_kernel(
     int j = blockIdx.x * blockDim.x + tx; 
     int i = blockIdx.y * blockDim.y + ty; 
 
-    // In MassBalance serve ST dei vicini
+    // Serve solo Temperatura dei vicini in Shared
     __shared__ double s_ST[SHARED_H][SHARED_W];
-    // Sh serve solo del centro? No, serve per i flussi... aspetta.
-    // MassBalance: h_next = h + inFlows - outFlows.
-    // InFlow viene da (ni, nj) verso ME. OutFlow viene da ME verso (ni, nj).
-    // I flussi sono in Mf (Global).
-    // L'unica variabile di stato del vicino che serve è ST (per calcolare la temperatura media ponderata).
-    
-    int s_c = tx + 1;
-    int s_r = ty + 1;
+    int s_c = tx + 1; int s_r = ty + 1;
 
-    // Carico Centro
+    // Caricamento Halo ST
     s_ST[s_r][s_c] = get_safe(ST, rows, cols, i, j, 0.0);
-
-    // Carico Halo per ST
-    if (ty == 0) s_ST[0][s_c] = get_safe(ST, rows, cols, i - 1, j, 0.0);
-    if (ty == TILE_H - 1) s_ST[SHARED_H - 1][s_c] = get_safe(ST, rows, cols, i + 1, j, 0.0);
-    if (tx == 0) s_ST[s_r][0] = get_safe(ST, rows, cols, i, j - 1, 0.0);
-    if (tx == TILE_W - 1) s_ST[s_r][SHARED_W - 1] = get_safe(ST, rows, cols, i, j + 1, 0.0);
+    if (ty == 0) s_ST[0][s_c] = get_safe(ST, rows, cols, i-1, j, 0.0);
+    if (ty == TILE_H-1) s_ST[SHARED_H-1][s_c] = get_safe(ST, rows, cols, i+1, j, 0.0);
+    if (tx == 0) s_ST[s_r][0] = get_safe(ST, rows, cols, i, j-1, 0.0);
+    if (tx == TILE_W-1) s_ST[s_r][SHARED_W-1] = get_safe(ST, rows, cols, i, j+1, 0.0);
     
-    // Angoli
-    if (tx == 0 && ty == 0) s_ST[0][0] = get_safe(ST, rows, cols, i - 1, j - 1, 0.0);
-    if (tx == TILE_W - 1 && ty == 0) s_ST[0][SHARED_W - 1] = get_safe(ST, rows, cols, i - 1, j + 1, 0.0);
-    if (tx == 0 && ty == TILE_H - 1) s_ST[SHARED_H - 1][0] = get_safe(ST, rows, cols, i + 1, j - 1, 0.0);
-    if (tx == TILE_W - 1 && ty == TILE_H - 1) s_ST[SHARED_H - 1][SHARED_W - 1] = get_safe(ST, rows, cols, i + 1, j + 1, 0.0);
+    // Angoli (anche se raramente usati per Von Neumann, servono per Moore se necessario)
+    if (tx==0 && ty==0) s_ST[0][0] = get_safe(ST, rows, cols, i-1, j-1, 0.0);
+    if (tx==TILE_W-1 && ty==0) s_ST[0][SHARED_W-1] = get_safe(ST, rows, cols, i-1, j+1, 0.0);
+    if (tx==0 && ty==TILE_H-1) s_ST[SHARED_H-1][0] = get_safe(ST, rows, cols, i+1, j-1, 0.0);
+    if (tx==TILE_W-1 && ty==TILE_H-1) s_ST[SHARED_H-1][SHARED_W-1] = get_safe(ST, rows, cols, i+1, j+1, 0.0);
 
     __syncthreads();
 
@@ -220,8 +194,8 @@ __global__ void massBalance_tiled_wH_kernel(
 
     const int inflowsIndices[8] = {3, 2, 1, 0, 6, 7, 4, 5};
     double inFlow, outFlow, neigh_t;
-    double initial_h = GET(Sh, cols, i, j); // Sh locale lo leggo da global (un solo accesso, va bene)
-    double initial_t = s_ST[s_r][s_c];      // Da Shared
+    double initial_h = GET(Sh, cols, i, j);
+    double initial_t = s_ST[s_r][s_c]; // Da Shared
     
     double h_next = initial_h;
     double t_next = initial_h * initial_t;
@@ -233,10 +207,10 @@ __global__ void massBalance_tiled_wH_kernel(
         int n_r = s_r + Xi[n];
         int n_c = s_c + Xj[n];
 
-        // Lettura Temperatura vicino da Shared (Halo incluso)
+        // Lettura Temperatura vicino da Shared
         neigh_t = s_ST[n_r][n_c];
 
-        // Mf è in Global
+        // Mf sempre da Global
         if (ni >= 0 && ni < rows && nj >= 0 && nj < cols) {
             inFlow = BUF_GET(Mf, rows, cols, inflowsIndices[n - 1], ni, nj);
         } else inFlow = 0.0;
@@ -345,11 +319,11 @@ int main(int argc, char **argv)
   dim3 numBlocks((sciara->domain->cols + TILE_W - 1) / TILE_W, (sciara->domain->rows + TILE_H - 1) / TILE_H);
 
   double *d_total_emitted_lava = NULL;
-  cudaMalloc(&d_total_emitted_lava, sizeof(double));
+  cudaMallocManaged(&d_total_emitted_lava, sizeof(double));
   cudaMemset(d_total_emitted_lava, 0, sizeof(double));
 
   double *d_total_current_lava = NULL;
-  cudaMalloc(&d_total_current_lava, sizeof(double));
+  cudaMallocManaged(&d_total_current_lava, sizeof(double));
   cudaMemset(d_total_current_lava, 0, sizeof(double));
 
   util::Timer cl_timer;
@@ -367,10 +341,10 @@ int main(int argc, char **argv)
   printf("Simulation started (TILED_wH Version). Max Steps: %d\n", max_steps);
   cudaError_t err;
 
-  // NOTA LE PARENTESI E L'OPERATORE &&
-while ( (max_steps > 0 && sciara->simulation->step < max_steps) && 
-        ((sciara->simulation->elapsed_time <= sciara->simulation->effusion_duration) || 
-         (total_current_lava == -1 || total_current_lava > thickness_threshold)) )
+  // LOOP CORRETTO PER IL PROFILING
+  while ((max_steps > 0 && sciara->simulation->step < max_steps) || 
+         ((sciara->simulation->elapsed_time <= sciara->simulation->effusion_duration) || 
+          (total_current_lava == -1 || total_current_lava > thickness_threshold)))
   {
     sciara->simulation->elapsed_time += sciara->parameters->Pclock;
     sciara->simulation->step++;
@@ -383,13 +357,14 @@ while ( (max_steps > 0 && sciara->simulation->step < max_steps) &&
     cudaDeviceSynchronize(); 
     err = cudaGetLastError(); if(err != cudaSuccess) { printf("ERR(emit): %s\n", cudaGetErrorString(err)); exit(1); }
 
+    sciara->simulation->total_emitted_lava = *d_total_emitted_lava;
+
     // TILED WITH HALO
     computeOutflows_tiled_wH_kernel<<<numBlocks, threadsPerBlock>>>(
         sciara->domain->rows, sciara->domain->cols, sciara->X->Xi, sciara->X->Xj, d_Sz, d_Sh, d_ST, sciara->substates->Mf,
         sciara->parameters->Pc, sciara->parameters->a, sciara->parameters->b, sciara->parameters->c, sciara->parameters->d
     );
 
-    // TILED WITH HALO
     massBalance_tiled_wH_kernel<<<numBlocks, threadsPerBlock>>>(
         sciara->domain->rows, sciara->domain->cols, sciara->X->Xi, sciara->X->Xj, d_Sh, d_Sh_next, d_ST, d_ST_next, sciara->substates->Mf
     );
@@ -427,9 +402,6 @@ while ( (max_steps > 0 && sciara->simulation->step < max_steps) &&
   printf("Saving output to %s...\n", argv[OUTPUT_PATH_ID]);
   saveConfiguration(argv[OUTPUT_PATH_ID], sciara);
 
-  cudaFree(d_total_emitted_lava);
-  cudaFree(d_total_current_lava);
-  finalize(sciara);
-
+  cudaFree(d_total_emitted_lava); cudaFree(d_total_current_lava); finalize(sciara);
   return 0;
 }

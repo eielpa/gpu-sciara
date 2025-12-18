@@ -7,7 +7,7 @@
 // --- CONFIGURAZIONE TILING ---
 
 #ifndef TILE_W
-#define TILE_W 16
+#define TILE_W 32
 #endif
 #ifndef TILE_H
 #define TILE_H 16
@@ -346,7 +346,7 @@ int main(int argc, char **argv)
   cudaError_t err;
 
   // NOTA LE PARENTESI E L'OPERATORE &&
-while ( (max_steps > 0 && sciara->simulation->step < max_steps) && 
+while ( (max_steps > 0 && sciara->simulation->step < max_steps) || 
         ((sciara->simulation->elapsed_time <= sciara->simulation->effusion_duration) || 
          (total_current_lava == -1 || total_current_lava > thickness_threshold)) )
   {

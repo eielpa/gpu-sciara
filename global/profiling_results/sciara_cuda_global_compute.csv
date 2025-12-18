@@ -1,8 +1,8 @@
-==168511== NVPROF is profiling process 168511, command: ./sciara_cuda_global ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 10 10 1.0
-==168511== Some kernel(s) will be replayed on device 0 in order to collect all events/metrics.
-==168511== Profiling application: ./sciara_cuda_global ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 10 10 1.0
-==168511== Profiling result:
-==168511== Metric result:
+==172989== NVPROF is profiling process 172989, command: ./sciara_cuda_global ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 10 10 1.0
+==172989== Some kernel(s) will be replayed on device 0 in order to collect all events/metrics.
+==172989== Profiling application: ./sciara_cuda_global ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 10 10 1.0
+==172989== Profiling result:
+==172989== Metric result:
 "Device","Kernel","Invocations","Metric Name","Metric Description","Min","Max","Avg"
 "NVIDIA GeForce GTX 980 (0)","boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)",10,"flop_count_dp","Floating Point Operations(Double Precision)",0,0,0
 "NVIDIA GeForce GTX 980 (0)","boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)",10,"flop_count_sp","Floating Point Operations(Single Precision)",0,0,0
@@ -10,7 +10,7 @@
 "NVIDIA GeForce GTX 980 (0)","makeBorder_kernel(int, int, double*, bool*, int*, int*)",1,"flop_count_sp","Floating Point Operations(Single Precision)",0,0,0
 "NVIDIA GeForce GTX 980 (0)","computeOutflows_kernel(int, int, int*, int*, double*, double*, double*, double*, double, double, double, double, double)",10,"flop_count_dp","Floating Point Operations(Double Precision)",1410,26281,13724
 "NVIDIA GeForce GTX 980 (0)","computeOutflows_kernel(int, int, int*, int*, double*, double*, double*, double*, double, double, double, double, double)",10,"flop_count_sp","Floating Point Operations(Single Precision)",48,854,443
-"NVIDIA GeForce GTX 980 (0)","globalReduction_kernel(int, int, double*, double*)",1,"flop_count_dp","Floating Point Operations(Double Precision)",1362,1362,1362
+"NVIDIA GeForce GTX 980 (0)","globalReduction_kernel(int, int, double*, double*)",1,"flop_count_dp","Floating Point Operations(Double Precision)",1360,1360,1360
 "NVIDIA GeForce GTX 980 (0)","globalReduction_kernel(int, int, double*, double*)",1,"flop_count_sp","Floating Point Operations(Single Precision)",0,0,0
 "NVIDIA GeForce GTX 980 (0)","massBalance_kernel(int, int, int*, int*, double*, double*, double*, double*, double*)",10,"flop_count_dp","Floating Point Operations(Double Precision)",7817160,7818096,7817628
 "NVIDIA GeForce GTX 980 (0)","massBalance_kernel(int, int, int*, int*, double*, double*, double*, double*, double*)",10,"flop_count_sp","Floating Point Operations(Single Precision)",10,88,49

@@ -309,7 +309,7 @@ int main(int argc, char **argv)
   double total_current_lava = -1;
   simulationInitialize(sciara);
 
-  dim3 threadsPerBlock(16, 16);
+  dim3 threadsPerBlock(32,16);
   dim3 numBlocks(
       (sciara->domain->cols + threadsPerBlock.x - 1) / threadsPerBlock.x,
       (sciara->domain->rows + threadsPerBlock.y - 1) / threadsPerBlock.y
@@ -343,7 +343,7 @@ int main(int argc, char **argv)
   cudaError_t err; // Per check errori
 
   // NOTA LE PARENTESI E L'OPERATORE &&
-while ( (max_steps > 0 && sciara->simulation->step < max_steps) && 
+while ( (max_steps > 0 && sciara->simulation->step < max_steps) ||
         ((sciara->simulation->elapsed_time <= sciara->simulation->effusion_duration) || 
          (total_current_lava == -1 || total_current_lava > thickness_threshold)) )
   {

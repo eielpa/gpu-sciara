@@ -6,7 +6,7 @@
 
 // --- CONFIGURAZIONE TILING ---
 #ifndef TILE_W
-#define TILE_W 16
+#define TILE_W 32
 #endif
 #ifndef TILE_H
 #define TILE_H 16

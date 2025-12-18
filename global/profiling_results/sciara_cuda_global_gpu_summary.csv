@@ -1,15 +1,15 @@
-==168474== NVPROF is profiling process 168474, command: ./sciara_cuda_global ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 16000 1000 1.0
-==168474== Profiling application: ./sciara_cuda_global ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 16000 1000 1.0
-==168474== Profiling result:
+==172952== NVPROF is profiling process 172952, command: ./sciara_cuda_global ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 16000 1000 1.0
+==172952== Profiling application: ./sciara_cuda_global ./data/2006/2006_000000000000.cfg ./data/2006/output_2006 16000 1000 1.0
+==172952== Profiling result:
 "Type","Time(%)","Time","Calls","Avg","Min","Max","Name"
 ,%,s,,us,us,us,
-"GPU activities",42.260447,3.007248,16000,187.952000,183.649000,336.257000,"massBalance_kernel(int, int, int*, int*, double*, double*, double*, double*, double*)"
-"GPU activities",26.486111,1.884748,16000,117.796000,29.568000,196.641000,"computeOutflows_kernel(int, int, int*, int*, double*, double*, double*, double*, double, double, double, double, double)"
-"GPU activities",15.431743,1.098121,16000,68.632000,56.256000,95.073000,"computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)"
-"GPU activities",9.159388,0.651781,16000,40.736000,39.264000,45.920000,"boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)"
-"GPU activities",6.282556,0.447066,16000,27.941000,27.264000,77.184000,"emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)"
-"GPU activities",0.334486,0.023802,16016,1.486000,1.376000,1.856000,"[CUDA memcpy DtoH]"
-"GPU activities",0.024869,0.001770,16,110.604000,19.648000,205.377000,"globalReduction_kernel(int, int, double*, double*)"
-"GPU activities",0.016004,0.001139,5,227.764000,1.344000,567.235000,"[CUDA memcpy HtoD]"
-"GPU activities",0.002327,0.000166,24,6.900000,2.336000,73.312000,"[CUDA memset]"
-"GPU activities",0.002070,0.000147,1,147.297000,147.297000,147.297000,"makeBorder_kernel(int, int, double*, bool*, int*, int*)"
+"GPU activities",42.243708,3.003998,16000,187.749000,183.457000,333.570000,"massBalance_kernel(int, int, int*, int*, double*, double*, double*, double*, double*)"
+"GPU activities",26.496504,1.884196,16000,117.762000,29.536000,194.817000,"computeOutflows_kernel(int, int, int*, int*, double*, double*, double*, double*, double, double, double, double, double)"
+"GPU activities",15.437674,1.097790,16000,68.611000,56.320000,99.616000,"computeNewTemperatureAndSolidification_kernel(int, int, double, double, double, double, double, double, double, double, double*, double*, double*, double*, double*, double*, double*, bool*)"
+"GPU activities",9.165350,0.651758,16000,40.734000,39.360000,44.576000,"boundaryConditions_kernel(int, int, bool*, double*, double*, double*, double*)"
+"GPU activities",6.277750,0.446418,16000,27.901000,27.264000,50.433000,"emitLava_kernel(int, int, CudaVent*, int, double, double, double, double*, double, double, double*, double*, double*)"
+"GPU activities",0.334435,0.023782,16016,1.484000,1.376000,1.824000,"[CUDA memcpy DtoH]"
+"GPU activities",0.024065,0.001711,16,106.954000,19.584000,188.609000,"globalReduction_kernel(int, int, double*, double*)"
+"GPU activities",0.016085,0.001144,5,228.769000,1.312000,572.355000,"[CUDA memcpy HtoD]"
+"GPU activities",0.002359,0.000168,24,6.990000,2.336000,73.153000,"[CUDA memset]"
+"GPU activities",0.002071,0.000147,1,147.297000,147.297000,147.297000,"makeBorder_kernel(int, int, double*, bool*, int*, int*)"
